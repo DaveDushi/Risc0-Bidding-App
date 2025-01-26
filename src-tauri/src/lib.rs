@@ -1,8 +1,11 @@
 use bidding_core::{Cert, BidDetails};
+use host::run_zkvm;
 
 #[tauri::command]
 fn handle_bid_details(details: BidDetails) -> String {
-  format!("Bid Details: {:?}", details)
+    let bid: u32 = run_zkvm(details);
+
+    format!("The bid from the zkvm is, {:?}", bid)
 }
 
 
