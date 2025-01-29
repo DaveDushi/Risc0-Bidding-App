@@ -3,7 +3,7 @@ use k256::{
     ecdsa::{SigningKey, Signature, signature::Signer, VerifyingKey}, 
     EncodedPoint
 };
-use hex::{encode, decode};
+
 
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 pub struct Cert {
