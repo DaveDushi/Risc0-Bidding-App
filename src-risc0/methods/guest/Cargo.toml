@@ -11,3 +11,4 @@ bidding-core = { path = "../../../core" }
 
 [patch.crates-io]
 k256 = { git = "https://github.com/risc0/RustCrypto-elliptic-curves", tag = "k256/v0.13.4-risczero.1"}
+crypto-bigint = { git = "https://github.com/risc0/RustCrypto-crypto-bigint", tag = "v0.5.5-risczero.0" }
