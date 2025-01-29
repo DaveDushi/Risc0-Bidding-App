@@ -3,9 +3,9 @@ use host::run_zkvm;
 
 #[tauri::command]
 fn handle_bid_details(details: BidDetails) -> String {
-    let bid: u32 = run_zkvm(details);
+    let bid_details: BidDetails = run_zkvm(details);
 
-    format!("The bid from the zkvm is, {:?}", bid)
+    format!("The bid from the zkvm is, {:?}", bid_details)
 }
 
 

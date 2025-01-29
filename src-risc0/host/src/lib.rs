@@ -3,8 +3,12 @@ use methods::{
 };
 use risc0_zkvm::{default_prover, ExecutorEnv};
 use bidding_core::{Cert, BidDetails};
+use k256::{
+    ecdsa::{SigningKey, Signature, signature::Signer, VerifyingKey}, 
+    EncodedPoint
+};
 
-pub fn run_zkvm(details: BidDetails) -> u32 {
+pub fn run_zkvm(details: BidDetails) -> BidDetails {
     // For example:
     let input: BidDetails = details;
     let env = ExecutorEnv::builder()
@@ -28,7 +32,7 @@ pub fn run_zkvm(details: BidDetails) -> u32 {
     // TODO: Implement code for retrieving receipt journal here.
 
     // For example:
-    let output: u32 = receipt.journal.decode().unwrap();
+    let output: BidDetails = receipt.journal.decode().unwrap();
     
     output
 }
