@@ -6,4 +6,3 @@ edition = "2021"
 [dependencies]
 serde = "1.0"
 k256 = { version = "=0.13.4", features = ["arithmetic", "serde", "expose-field", "std", "ecdsa"], default_features = false }
-hex = "0.4.3"

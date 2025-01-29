@@ -9,8 +9,7 @@ use hex::{encode, decode};
 pub struct Cert {
     pub balance: u32,
     pub date: String, // Keep as String or use chrono::NaiveDate
-    // #[serde(serialize_with = "encoded_point_to_hex", deserialize_with = "hex_to_encoded_point")]
-    // pub public_key: EncodedPoint,
+    pub public_key: EncodedPoint,
 }
 
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]

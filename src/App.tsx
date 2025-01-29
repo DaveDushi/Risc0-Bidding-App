@@ -13,8 +13,7 @@ const callRust = async () => {
 	const cert = {
 		balance: 1000,
 		date: date.toLocaleString(), 
-		// public_key: "04a34c4f1c58b34ed0b2568b2e3eb9d1d50faeef97b307d5a9f27b69f28d91b37dd0b4d3b2e5782fb699c2d5ad1bc4f47d04846ff6f0033b9a4d96eb3927fd42c3"
-		
+		public_key: "02a34c4f1c58b34ed0b2568b2e3eb9d1d50faeef97b307d5a9f27b69f28d91b37d" //ensure that the public_key field contains a valid SEC1-encoded point for the secp256k1 curve
 	}
 	
 	const details = {
