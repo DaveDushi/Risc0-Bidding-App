@@ -38,7 +38,7 @@ pub struct BidDetails {
 //     EncodedPoint::from_bytes(&bytes).map_err(serde::de::Error::custom)
 // }
 
-/// Helper functions for `Signature`
+// /// Helper functions for `Signature`
 // fn signature_to_hex<S>(sig: &Signature, serializer: S) -> Result<S::Ok, S::Error>
 // where
 //     S: serde::Serializer,
