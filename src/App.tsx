@@ -1,7 +1,7 @@
 import './App.css'
-import { Button } from './components/ui/button'
 import { invoke } from '@tauri-apps/api/core';
 import { useState } from 'react'
+import AuctionPage from './components/auction-page'
 
 function App() {
 const [message, setMessage] = useState("")
@@ -23,8 +23,7 @@ const callRust = async () => {
 
   return (
     <>
-      <Button onClick={callRust}>Click me </Button>
-      <p>{message}</p>
+      <AuctionPage />
     </>
   )
 }

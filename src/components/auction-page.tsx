@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
+
 
 export default function AuctionPage() {
   const [currentBid, setCurrentBid] = useState(10)
@@ -32,7 +32,7 @@ export default function AuctionPage() {
     <div className="min-h-screen flex items-center justify-center p-4">
       <Card className="w-full max-w-md p-6 space-y-6">
         <div className="aspect-video relative rounded-lg overflow-hidden bg-gray-100">
-          <Image src="/placeholder.svg" alt="Item for sale" fill className="object-cover" />
+          <img src="/placeholder.svg" alt="Item for sale" className="object-cover" />
         </div>
 
         <div className="space-y-2">
