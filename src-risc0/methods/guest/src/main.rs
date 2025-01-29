@@ -1,9 +1,6 @@
 use risc0_zkvm::guest::env;
 use bidding_core::{Cert, BidDetails};
-use k256::{
-    ecdsa::{SigningKey, Signature, signature::Signer, VerifyingKey}, 
-    EncodedPoint
-};
+
 
 fn main() {
     // TODO: Implement your guest code here
