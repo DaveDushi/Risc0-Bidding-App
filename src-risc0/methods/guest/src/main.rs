@@ -11,9 +11,10 @@ fn main() {
 
     let verifying_key = VerifyingKey::from_encoded_point(&input.cert.public_key).unwrap();
 
-    let cert = serde_json::to_string(&input.cert).unwrap();
-    
-    let result = match verifying_key.verify(&cert, &input.bank_sig) {
+    let cert_string = serde_json::to_string(&input.cert).unwrap();
+    let cert_bytes: Vec<u8> = cert_string.into_bytes();
+
+    let result = match verifying_key.verify(&cert_bytes, &input.bank_sig) {
             Ok(()) => format!("The signature is authentic."),
             Err(e) => format!("The signature is not authentic: {:?}", e),
     };
