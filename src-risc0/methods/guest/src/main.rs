@@ -23,11 +23,29 @@ fn main() {
     };
 
     // verify signed challenge on challenge
+    let challenge = &input.challenge;
+    let signed_challenge = &input.signed_challenge; // No need for from_der()
 
+    
+
+    let client_verifying_key = VerifyingKey::from_encoded_point(&input.bank_details.cert.client_public_key)
+    .expect("Invalid client public key");
+
+let challenge_verification_result = match client_verifying_key.verify(challenge.as_bytes(), signed_challenge) {
+    Ok(()) => "The challenge is authentic.".to_string(),
+    Err(e) => format!("The challenge is not authentic: {:?}", e),
+};
+
+    
     // verify date is today (maybe)
 
     // output: challenge, date, bid, banks publick key
 
-    // write public output to the journal
-    env::commit(&result);
+    let combined_response = format!(
+        "{} | {}",
+        result, challenge_verification_result
+    );
+
+    // Write public output to the journal
+    env::commit(&combined_response);
 }
