@@ -8,7 +8,7 @@ use k256::{
     EncodedPoint
 };
 
-pub fn run_zkvm(details: BidDetails) -> BidDetails {
+pub fn run_zkvm(details: BidDetails) -> String {
     // For example:
     let input: BidDetails = details;
     let env = ExecutorEnv::builder()
@@ -32,7 +32,7 @@ pub fn run_zkvm(details: BidDetails) -> BidDetails {
     // TODO: Implement code for retrieving receipt journal here.
 
     // For example:
-    let output: BidDetails = receipt.journal.decode().unwrap();
+    let output: String = receipt.journal.decode().unwrap();
     
     output
 }
