@@ -16,7 +16,7 @@ pub struct Cert {
 pub struct BidDetails {
     pub bid: u32,
     pub cert: Cert, // Fixed: Changed from Cert to BankCert
-    pub bank_sig: Signature,
+    // pub bank_sig: Signature,
 }
 
 // /// Helper functions for `EncodedPoint`
