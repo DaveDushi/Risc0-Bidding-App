@@ -10,7 +10,7 @@ fn main() {
 
     let verifying_key = VerifyingKey::from_encoded_point(&input.cert.public_key).unwrap();
     
-    let result = verifying_key.verify(&input.cert, &input.bank_sig) {
+    let result = match verifying_key.verify(&input.cert, &input.bank_sig) {
             Ok(()) => format!("The signature is authentic."),
             Err(e) => format!("The signature is not authentic: {:?}", e),
     };
