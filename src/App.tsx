@@ -19,7 +19,7 @@ const callRust = async () => {
 	const details = {
 		bid: 100,
 		cert,
-		// bank_sig: "" // hexadecimal string representation of the DER-encoded ECDSA signature
+		bank_sig: "304402200123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef02200123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef" // hexadecimal string representation of the DER-encoded ECDSA signature
 	}
 	
 	setMessage(await invoke('handle_bid_details', { details }))

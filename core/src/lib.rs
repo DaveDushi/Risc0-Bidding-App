@@ -16,5 +16,5 @@ pub struct Cert {
 pub struct BidDetails {
     pub bid: u32,
     pub cert: Cert,
-    // pub bank_sig: Signature,
+    pub bank_sig: Signature,
 }
