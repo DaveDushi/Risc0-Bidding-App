@@ -1,11 +1,13 @@
 use bidding_core::{Cert, BidDetails};
 use host::run_zkvm;
+use serde_json;
+
 
 #[tauri::command]
 fn handle_bid_details(details: BidDetails) -> String {
     let bid_details: BidDetails = run_zkvm(details);
-
-    format!("The bid from the zkvm is, {:?}", bid_details)
+    let bid_details_string = serde_json::to_string(&bid_details);
+    format!("The bid from the zkvm is, {}", bid_details_string)
 }
 
 
