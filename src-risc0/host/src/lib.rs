@@ -2,7 +2,7 @@ use methods::{
     BIDDING_GUEST_ELF, BIDDING_GUEST_ID
 };
 use risc0_zkvm::{default_prover, ExecutorEnv};
-use bidding_core::{Cert, BidDetails};
+use bidding_core::{BidDetails};
 use k256::{
     ecdsa::{SigningKey, Signature, signature::Signer, VerifyingKey}, 
     EncodedPoint

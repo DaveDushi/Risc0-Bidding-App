@@ -9,12 +9,21 @@ use k256::{
 pub struct Cert {
     pub balance: u32,
     pub date: String, // Keep as String maybe change later prob not
-    pub public_key: EncodedPoint,
+    pub client_public_key: EncodedPoint,
+}
+
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+pub struct BankDetails {
+    pub cert: Cert,
+    pub bank_sig: Signature,
+    pub bank_public_key: EncodedPoint,
 }
 
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 pub struct BidDetails {
+    pub bank_details: BankDetails,
     pub bid: u32,
-    pub cert: Cert,
-    pub bank_sig: Signature,
+    pub challenge: String,
+    pub signed_challenge: Signature,
 }
+

@@ -1,4 +1,4 @@
-use bidding_core::{Cert, BidDetails};
+use bidding_core::{BidDetails};
 use host::run_zkvm;
 use serde_json;
 
