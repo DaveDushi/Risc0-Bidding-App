@@ -16,8 +16,7 @@ pub struct Cert {
 pub struct BidDetails {
     pub bid: u32,
     pub cert: Cert, // Fixed: Changed from Cert to BankCert
-    // #[serde(serialize_with = "signature_to_hex", deserialize_with = "hex_to_signature")]
-    // pub bank_sig: Signature,
+    pub bank_sig: Signature,
 }
 
 // /// Helper functions for `EncodedPoint`
