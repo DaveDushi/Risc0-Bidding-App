@@ -9,6 +9,9 @@ fn main() {
     // read the input
     let input: BidDetails  = env::read();
 
+    // check balance is greater than bid
+
+    // verify banks sig on cert
     let verifying_key = VerifyingKey::from_encoded_point(&input.bank_details.bank_public_key).unwrap();
 
     let cert_string = serde_json::to_string(&input.bank_details.cert).unwrap();
@@ -19,7 +22,11 @@ fn main() {
             Err(e) => format!("The signature is not authentic: {:?}", e),
     };
 
-    // TODO: do something with the input
+    // verify signed challenge on challenge
+
+    // verify date is today (maybe)
+
+    // output: challenge, date, bid, banks publick key
 
     // write public output to the journal
     env::commit(&result);

@@ -4,6 +4,13 @@ use methods::{
     BIDDING_GUEST_ELF, BIDDING_GUEST_ID
 };
 use risc0_zkvm::{default_prover, ExecutorEnv};
+use bidding_core::{BidDetails, Cert, BankDetails};
+use k256::{
+    ecdsa::{SigningKey, Signature, signature::Signer, VerifyingKey}, 
+    EncodedPoint
+};
+use hex::{ encode, decode };
+
 
 fn main() {
     // Initialize tracing. In order to view logs, run `RUST_LOG=info cargo run`
@@ -11,20 +18,57 @@ fn main() {
         .with_env_filter(tracing_subscriber::filter::EnvFilter::from_default_env())
         .init();
 
-    // An executor environment describes the configurations for the zkVM
-    // including program inputs.
-    // A default ExecutorEnv can be created like so:
-    // `let env = ExecutorEnv::builder().build().unwrap();`
-    // However, this `env` does not have any inputs.
-    //
-    // To add guest input to the executor environment, use
-    // ExecutorEnvBuilder::write().
-    // To access this method, you'll need to use ExecutorEnv::builder(), which
-    // creates an ExecutorEnvBuilder. When you're done adding input, call
-    // ExecutorEnvBuilder::build().
+    let client_public_key_hex = "04d3a0b0c7207006c2f258e4ed59230a530e6fbecb687bf629d1d074701ad24ab2ca13e7749be39d1a8b3812cdae94520c92c40b0c68445ec103fe99e47f73e2a5";
+    let client_public_key_bytes = hex::decode(client_public_key_hex)
+        .expect("Failed to decode hex public key");
+    let client_public_key = EncodedPoint::from_bytes(&client_public_key_bytes)
+        .expect("Invalid public key bytes");
+
+    let bank_public_key_hex = "044e3b81af9c2234cad09d679ce6035ed1392347ce64ce405f5dcd36228a25de6e47fd35c4215d1edf53e6f83de344615ce719bdb0fd878f6ed76f06dd277956de";
+    let bank_public_key_bytes = hex::decode(bank_public_key_hex)
+        .expect("Failed to decode hex public key");
+    let bank_public_key = EncodedPoint::from_bytes(&bank_public_key_bytes)
+        .expect("Invalid public key bytes");
+
+    let bank_sig_hex = "437496313c2182d9b1c37471e2394d9254a753c705b353801c39f0f5a922c4af0a0ac0d8e19041afff9dfeb1c639906d9199329633e49e88c5702b6e4a8883b3"; 
+    let bank_sig_bytes = hex::decode(bank_sig_hex)
+        .expect("Failed to decode hex public key");
+    let bank_sig = Signature::from_slice(&bank_sig_bytes)
+        .expect("Failed to decode hex sig");
+
+    let signed_challenge_hex = "BD13AC123219902DAC8154CF560A4DF5F990242EC040BC34E60FB5C96B1E776A72159ED282BD9B1B8F609DC58E8AD2E90352240FF53A9FBC448D22D67086B157";
+    let signed_challenge_bytes = hex::decode(signed_challenge_hex)
+        .expect("Failed to decode hex public key");
+    let signed_challenge = Signature::from_slice(&signed_challenge_bytes)
+        .expect("Failed to decode hex sig");
+
+
+
+    // Create the `bankCert` equivalent in Rust
+    let bank_cert = Cert {
+        balance: 1000,
+        date: "2025-01-30".to_string(),
+        client_public_key,
+    };
+
+    // Create the `bankDetails` equivalent in Rust
+    let bank_details = BankDetails {
+        cert: bank_cert,
+        bank_sig,
+        bank_public_key,
+    };
+
+    // Create the `bidDetails` equivalent in Rust
+    let bid_details = BidDetails {
+        bank_details,
+        bid: 100,
+        challenge: "".to_string(),
+        signed_challenge,
+    };
+   
 
     // For example:
-    let input: u32 = 15 * u32::pow(2, 27) + 1;
+    let input: BidDetails = bid_details;
     let env = ExecutorEnv::builder()
         .write(&input)
         .unwrap()
@@ -46,8 +90,8 @@ fn main() {
     // TODO: Implement code for retrieving receipt journal here.
 
     // For example:
-    let _output: u32 = receipt.journal.decode().unwrap();
-
+    let output: String = receipt.journal.decode().unwrap();
+    println!("{}", output);
     // The receipt was verified at the end of proving, but the below code is an
     // example of how someone else could verify this receipt.
     receipt
