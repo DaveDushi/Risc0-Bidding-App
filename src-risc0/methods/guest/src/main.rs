@@ -1,6 +1,7 @@
 use risc0_zkvm::guest::env;
 use bidding_core::{Cert, BidDetails};
 use k256::{ecdsa::{signature::Verifier, Signature, VerifyingKey}, EncodedPoint,};
+use serde_json;
 
 fn main() {
     // TODO: Implement your guest code here
@@ -9,8 +10,10 @@ fn main() {
     let input: BidDetails  = env::read();
 
     let verifying_key = VerifyingKey::from_encoded_point(&input.cert.public_key).unwrap();
+
+    let cert = serde_json::to_string(&input.cert).unwrap();
     
-    let result = match verifying_key.verify(&input.cert, &input.bank_sig) {
+    let result = match verifying_key.verify(&cert, &input.bank_sig) {
             Ok(()) => format!("The signature is authentic."),
             Err(e) => format!("The signature is not authentic: {:?}", e),
     };

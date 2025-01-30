@@ -9,6 +9,7 @@ edition = "2021"
 risc0-zkvm = { version = "1.2.2", features = ["std", "unstable"] }
 bidding-core = { path = "../../../core" }
 k256 = { version = "=0.13.4", features = ["arithmetic", "serde", "expose-field", "std", "ecdsa"], default-features = false }
+serde_json = "1.0"
 
 [patch.crates-io]
 sha2 = { git = "https://github.com/risc0/RustCrypto-hashes", tag = "sha2-v0.10.8-risczero.0" }
