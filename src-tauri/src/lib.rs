@@ -7,7 +7,7 @@ use serde_json;
 fn handle_bid_details(details: BidDetails) -> String {
     let bid_details: String = run_zkvm(details);
     // let bid_details_string = serde_json::to_string(&bid_details).unwrap();
-    format!("The bid from the zkvm is, {}", bid_details)
+    format!("{}", bid_details)
 }
 
 
