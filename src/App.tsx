@@ -23,8 +23,8 @@ const bankDetails = {
 const bidDetails = {
 	bank_details: bankDetails,
 	bid: 100,
-	challenge: "",
-	signed_challenge: "BD13AC123219902DAC8154CF560A4DF5F990242EC040BC34E60FB5C96B1E776A72159ED282BD9B1B8F609DC58E8AD2E90352240FF53A9FBC448D22D67086B157"
+	challenge: "1111",
+	signed_challenge: "f8f8666d654e4e86c51c31b251446431139ca33ae13491bc2f62f8e72e43f0834409a93f75e6b25473a914fb89d3a413297d892ef2d8fa6708b9087ae0ed540f"
 }
 
 function App() {
