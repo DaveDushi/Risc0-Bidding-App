@@ -27,3 +27,13 @@ pub struct BidDetails {
     pub signed_challenge: Signature,
 }
 
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+pub struct ReceiptOutput {
+    pub bid: u32,
+    pub challenge: String,
+    pub bank_public_key: EncodedPoint,
+    pub date: String, // Keep as String maybe change later prob not
+}
+
+
+
